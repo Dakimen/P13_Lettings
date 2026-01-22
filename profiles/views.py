@@ -11,9 +11,12 @@ index(request)
 profile(request, username)
     Displays the details for a specific profile identified by `username`.
 """
-
+from django.http import Http404
 from django.shortcuts import render
 from profiles.models import Profile
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 # Sed placerat quam in pulvinar commodo. Nullam laoreet consectetur ex, sed consequat libero
@@ -33,6 +36,7 @@ def index(request):
     HttpResponse
         Rendered template with all profiles.
     """
+    logger.info("Accessed profile index")
     profiles_list = Profile.objects.all()
     context = {'profiles_list': profiles_list}
     return render(request, 'profiles/index.html', context)
@@ -58,6 +62,11 @@ def profile(request, username):
     HttpResponse
         Rendered template with the chosen profile's details.
     """
-    profile = Profile.objects.get(user__username=username)
+    logger.info("Accessed profile details")
+    try:
+        profile = Profile.objects.get(user__username=username)
+    except Profile.DoesNotExist:
+        logger.warning("Profile not found", extra={"user__username": username})
+        raise Http404("Letting does not exist")
     context = {'profile': profile}
     return render(request, 'profiles/profile.html', context)

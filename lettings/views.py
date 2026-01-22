@@ -11,9 +11,12 @@ index(request)
 letting(request, letting_id)
     Displays the details for a specific letting identified by `letting_id`.
 """
-
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
+from django.http import Http404
 from lettings.models import Letting
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 # Aenean leo magna, vestibulum et tincidunt fermentum, consectetur quis velit. Sed non placerat
@@ -34,6 +37,7 @@ def index(request):
     HttpResponse
         Rendered template with all lettings.
     """
+    logger.info("Accessed lettings index")
     lettings_list = Letting.objects.all()
     context = {'lettings_list': lettings_list}
     return render(request, 'lettings/index.html', context)
@@ -66,7 +70,12 @@ def letting(request, letting_id):
     HttpResponse
         Rendered template with title and address of the letting.
     """
-    letting = get_object_or_404(Letting, id=letting_id)
+    logger.info("Accessed letting detail view", extra={"letting_id": letting_id})
+    try:
+        letting = Letting.objects.get(id=letting_id)
+    except Letting.DoesNotExist:
+        logger.warning("Letting not found", extra={"letting_id": letting_id})
+        raise Http404("Letting does not exist")
     context = {
         'title': letting.title,
         'address': letting.address,
