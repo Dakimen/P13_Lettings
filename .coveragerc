@@ -1,0 +1,6 @@
+[run]
+omit =
+    oc_lettings_site\wsgi.py
+    profiles\apps.py
+    oc_lettings_site\asgi.py 
+    lettings\apps.py 
