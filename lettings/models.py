@@ -52,7 +52,7 @@ class Address(models.Model):
 
         Specifies human-readable plural for admin interface.
         """
-        verbose_name_plural = "addresses"
+        verbose_name_plural = "Addresses"
 
     def __str__(self):
         """
