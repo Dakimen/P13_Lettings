@@ -63,3 +63,4 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/orange-lettings:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/orange-lettings:${{ github.sha }}
+            ${{ secrets.YANDEX_CR }}/orange-lettings:latest
