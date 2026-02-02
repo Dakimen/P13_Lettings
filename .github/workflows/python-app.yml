@@ -102,3 +102,5 @@ jobs:
             --concurrency 1 \
             --command gunicorn \
             --args oc_lettings_site.wsgi:application,--bind,0.0.0.0:8080
+            --environment DJANGO_SECRET_KEY=yc://lockbox/${{ secrets.LB_ENV_SECRET }}/DJANGO_SECRET_KEY/latest \
+            --environment SENTRY_DSN=yc://lockbox/${{ secrets.LB_ENV_SECRET }}/SENTRY_DSN/latest
