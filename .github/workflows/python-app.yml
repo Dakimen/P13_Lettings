@@ -99,5 +99,4 @@ jobs:
             --service-account-id ${{ secrets.SA_ID }} \
             --memory 512M \
             --execution-timeout 10s \
-            --concurrency 1 \
-            --traffic-percent 100
+            --concurrency 1
