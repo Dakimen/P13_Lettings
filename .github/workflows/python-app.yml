@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: CI/CD
+name: CI/CD/Deploy
 
 on:
   push:
@@ -55,6 +55,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Login to Yandex Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: cr.yandex
+          username: json_key
+          password: ${{ secrets.YANDEX_SA_KEY }}
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
@@ -64,3 +71,36 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/orange-lettings:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/orange-lettings:${{ github.sha }}
             ${{ secrets.YANDEX_CR }}/orange-lettings:latest
+
+  deploy:
+    needs: cd
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Install Yandex Cloud CLI
+        run: |
+          curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
+          echo "$HOME/yandex-cloud/bin" >> $GITHUB_PATH
+
+      - name: Authenticate to Yandex Cloud
+        run: |
+          echo '${{ secrets.YANDEX_SA_KEY }}' > key.json
+          yc config set service-account-key key.json
+          yc config set cloud-id ${{ secrets.YANDEX_CLOUD_ID }}
+          yc config set folder-id ${{ secrets.YANDEX_FOLDER_ID }}
+          rm -f key.json
+
+      - name: Deploy new container revision
+        run: |
+          yc serverless container revision deploy \
+            --container-id ${{ secrets.CONTAINER_ID }} \
+            --image ${{ secrets.YANDEX_CR }}/orange-lettings:latest \
+            --service-account-id ${{ secrets.SA_ID }} \
+            --memory 512M \
+            --execution-timeout 10s \
+            --concurrency 1 \
+            --command gunicorn \
+            --args oc_lettings_site.wsgi:application,--bind,0.0.0.0:8080 \
+            --secret environment-variable=SENTRY_DSN,id=${{ secrets.LOCKBOX_SECRET_ID }},key=SENTRY_DSN \
+            --secret environment-variable=DJANGO_SECRET_KEY,id=${{ secrets.LOCKBOX_SECRET_ID }},key=DJANGO_SECRET_KEY
