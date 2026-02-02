@@ -99,9 +99,6 @@ jobs:
             --service-account-id ${{ secrets.SA_ID }} \
             --memory 512M \
             --execution-timeout 10s \
-            --concurrency 1
-
-      - name: List container revisions
-        run: |
-          yc serverless container revision list \
-          --container-id ${{ secrets.CONTAINER_ID }}
+            --concurrency 1 \
+            --command "gunicorn oc_lettings_site.wsgi:application" \
+            --argument "--bind 0.0.0.0:$PORT"
