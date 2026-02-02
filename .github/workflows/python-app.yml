@@ -89,12 +89,15 @@ jobs:
           yc config set service-account-key key.json
           yc config set cloud-id ${{ secrets.YANDEX_CLOUD_ID }}
           yc config set folder-id ${{ secrets.YANDEX_FOLDER_ID }}
+          rm -f key.json
 
       - name: Deploy new container revision
         run: |
           yc serverless container revision deploy \
-            --container-name orange-lettings-course \
+            --container-id ${{ secrets.CONTAINER_ID }} \
             --image ${{ secrets.YANDEX_CR }}/orange-lettings:latest \
+            --service-account-id ${{ secrets.SA_ID }} \
             --memory 512M \
             --execution-timeout 10s \
-            --concurrency 1
+            --concurrency 1 \
+            --traffic-percent 100
