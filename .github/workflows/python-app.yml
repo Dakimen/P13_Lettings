@@ -100,3 +100,8 @@ jobs:
             --memory 512M \
             --execution-timeout 10s \
             --concurrency 1
+
+      - name: List container revisions
+        run: |
+          yc serverless container revision list \
+          --container-id ${{ secrets.CONTAINER_ID }}
