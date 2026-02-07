@@ -167,7 +167,9 @@ Administrators can manage users, profiles, addresses, and lettings via the Djang
 
 Deployment
 ----------
+
 To deploy this application, you will need the following:
+
 - Sentry account with a personal DSN
 - DockerHub account
 - Yandex Cloud account
@@ -176,16 +178,29 @@ To deploy this application, you will need the following:
 - Yandex Cloud Service Account
 
 1. Configure your Yandex Cloud Service Account
-Assign Cloud-level permissions to your account: **editor**, **viewer**
-Assign other permissions: **container-registry.images.puller**, **lockbox.payloadViewer**, **kms.keys.encrypterDecrypter**
+
+   Assign Cloud-level permissions to your account:
+
+   - ``editor``
+   - ``viewer``
+
+   Assign other permissions:
+
+   - ``container-registry.images.puller``
+   - ``lockbox.payloadViewer``
+   - ``kms.keys.encrypterDecrypter``
 
 2. Create your Yandex Lockbox Secret
+
    During creation:
-   1. Select User Secret Type
-   2. Add keys-value pairs:
-      - key: SENTRY_DSN containing your SENTRY_DSN
-      - key: DJANGO_SECRET_KEY, containing your secret key
-   3. Click "Create"
+
+   1. Select **User Secret** Type
+   2. Add key-value pairs:
+
+      - ``SENTRY_DSN`` — your Sentry DSN
+      - ``DJANGO_SECRET_KEY`` — your Django secret key
+
+   Click **Create**.
 
 3. Create your Yandex Cloud Container Registry named **orange-lettings**
 
@@ -193,31 +208,43 @@ Assign other permissions: **container-registry.images.puller**, **lockbox.payloa
    Note: Your Service Account should have **functions.admin** permission in your Serverless Container.
 
 5. Generate Service Account Key
-Replace <SA_ID> with your Service Account's ID.
+
+Replace ``<SA_ID>`` with your Service Account ID.
 
    .. code-block:: bash
 
       yc iam key create --service-account-id <SA_ID> --output sa-key.json
 
-ATTENTION: Be careful not to push the generated key to your GitHub Repository.
+.. warning::
 
-6. Add the following values to your GitHub Repository Actions Secrets:
-   - CONTAINER_ID - ID of your Serverless Container
-   - DOCKERHUB_TOKEN - Token generated for access to your DockerHub
-   - DOCKERHUB_USERNAME - Your DockerHub username
-   - LOCKBOX_SECRET_ID - ID of your LOCKBOX secret containing values from step 2.
-   - SA_ID - ID of your Service Account
-   - DJANGO_SECRET_KEY - Your Django Secret Key
-   - YANDEX_CLOUD_ID - Your Yandex Cloud's ID
-   - YANDEX_CR - Your Yandex Cloud Container Registry address as follows: cr.yandex/YourContainerRegistryID
-   - YANDEX_FOLDER_ID - ID of the Yandex Cloud Folder hosting your Services
-   - YANDEX_SA_KEY - Full JSON generated in step 5
+   Be careful **not** to commit or push the generated service account key
+   to your GitHub repository.
 
-7. Commit and push to your GitHub repository's master branch to launch the CI/CD pipeline and deployment
-- CI will run tests and verify linting
-- CD will build images and push them to Yandex Cloud and DockerHub
-- Deploy Step will deploy serverless container revision and make the website accessible with link provided by Yandex Cloud Serverless Container.
-Make sure the revision is set as **Public** in your Yandex Cloud.
+6. Add GitHub Actions secrets
+
+   Add the following values to your GitHub repository secrets:
+
+   - ``CONTAINER_ID`` — ID of your Serverless Container
+   - ``DOCKERHUB_TOKEN`` — DockerHub access token
+   - ``DOCKERHUB_USERNAME`` — your DockerHub username
+   - ``LOCKBOX_SECRET_ID`` — ID of your Lockbox secret
+   - ``SA_ID`` — Service Account ID
+   - ``DJANGO_SECRET_KEY`` — Django secret key
+   - ``YANDEX_CLOUD_ID`` — Yandex Cloud ID
+   - ``YANDEX_CR`` — ``cr.yandex/<ContainerRegistryID>``
+   - ``YANDEX_FOLDER_ID`` — Folder hosting your services
+   - ``YANDEX_SA_KEY`` — Full JSON key generated earlier
+
+7. Deploy
+
+   Commit and push to the ``master`` branch to trigger the CI/CD pipeline:
+
+   - CI runs tests and linting
+   - CD builds Docker images and pushes them to DockerHub and Yandex Cloud
+   - Deployment creates a new Serverless Container revision
+
+   Make sure the revision is set to **Public** in Yandex Cloud so the
+   application is accessible via the generated URL.
 
 Application Management
 ----------------------
