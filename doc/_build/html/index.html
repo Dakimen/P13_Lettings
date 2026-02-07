@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Welcome to Orange County Lettings’s documentation! &#8212; Orange County Lettings  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=6625fa76" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="welcome-to-orange-county-lettings-s-documentation">
+<h1>Welcome to Orange County Lettings’s documentation!<a class="headerlink" href="#welcome-to-orange-county-lettings-s-documentation" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<p>Orange County Lettings is a lettings application developed as a study project.
+The goal of the project was to put in place a functional CI/CD pipeline with automatic site deployment.
+The website itself presents a simple website listing user accounts and fictional lettings.</p>
+<p>Orange County Lettings is divided into three Django applications:
+- oc_lettings_site
+- lettings
+- profiles</p>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
+<p>To install this project on your local machine:
+1. Import the GitHub repository:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Dakimen/P13_Lettings
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic" start="2">
+<li><p>Create a virtual environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+</pre></div>
+</div>
+</li>
+<li><p>Activate your virtual environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>venv<span class="se">\S</span>cripts<span class="se">\A</span>ctivate<span class="w"> </span><span class="c1"># On Windows</span>
+<span class="c1"># Or</span>
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w"> </span><span class="c1"># On Linux</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</li>
+<li><p>Create a .env file at the project root and include in it:</p>
+<div class="highlight-env notranslate"><div class="highlight"><pre><span></span>SENTRY_DSN = Your Sentry DSN
+SECRET_KEY = Your Django Secret Key
+</pre></div>
+</div>
+</li>
+<li><p>Launch the application locally:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>manage.py<span class="w"> </span>runserver
+</pre></div>
+</div>
+</li>
+<li><p>Open <strong>http://localhost:8000</strong> in your browser of choice.</p></li>
+</ol>
+</section>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this heading">¶</a></h2>
+<p>To quickly run the project locally:</p>
+<ol class="arabic">
+<li><p>Clone the repository</p></li>
+<li><p>Install dependencies</p></li>
+<li><p>Run the development server</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Dakimen/P13_Lettings
+<span class="nb">cd</span><span class="w"> </span>P13_Lettings
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+python<span class="w"> </span>manage.py<span class="w"> </span>runserver
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Open <a class="reference external" href="http://localhost:8000">http://localhost:8000</a> in your browser.</p>
+</section>
+<section id="technologies-stack">
+<h2>Technologies Stack<a class="headerlink" href="#technologies-stack" title="Permalink to this heading">¶</a></h2>
+<p>This application uses:</p>
+<ul class="simple">
+<li><p>Python 3.8</p></li>
+<li><p>SQLite3 for the database</p></li>
+<li><p>Django 3.0</p></li>
+<li><p>Docker</p></li>
+<li><p>Yandex Cloud Services for deployment</p></li>
+<li><p>Sentry</p></li>
+<li><p>HTML5</p></li>
+<li><p>CSS3</p></li>
+<li><p>JavaScript</p></li>
+</ul>
+</section>
+<section id="database">
+<h2>Database<a class="headerlink" href="#database" title="Permalink to this heading">¶</a></h2>
+<p>Orange County Lettings uses SQLite3 to store its data locally.
+The database consists of four main entities.</p>
+<ul class="simple">
+<li><p>User - Django default User model</p></li>
+<li><dl class="simple">
+<dt>Profile:</dt><dd><ul>
+<li><p>user - One-To-One field to User object</p></li>
+<li><p>favorite_city - CharField containing profile’s favorite city.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Address:</dt><dd><ul>
+<li><p>number - PositiveIntegerField building number</p></li>
+<li><p>street - Charfield street name</p></li>
+<li><p>city - Charfield city name</p></li>
+<li><p>state = Charfield 2-letter state code</p></li>
+<li><p>zip_code - PositiveIntegerField zip code</p></li>
+<li><p>country_iso_code - CharField 3-letter country code</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Letting:</dt><dd><ul>
+<li><p>title - CharField letting title</p></li>
+<li><p>address = One-To-One field to Address object</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<section id="model-relationships">
+<h3>Model Relationships<a class="headerlink" href="#model-relationships" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Each Profile is linked to exactly one User (one-to-one relationship).</p></li>
+<li><p>Each Letting is linked to exactly one Address (one-to-one relationship).</p></li>
+<li><p>Deleting a User or Letting cascades deletion to the related model.</p></li>
+</ul>
+</section>
+</section>
+<section id="programming-interface">
+<h2>Programming interface<a class="headerlink" href="#programming-interface" title="Permalink to this heading">¶</a></h2>
+<p>This application exposes web interfaces through Django views.</p>
+<p>Main routes include:</p>
+<ul class="simple">
+<li><p><cite>/</cite> – Home page</p></li>
+<li><p><cite>/lettings/</cite> – List of available lettings</p></li>
+<li><p><cite>/lettings/&lt;id&gt;/</cite> – Letting detail page</p></li>
+<li><p><cite>/profiles/</cite> – List of user profiles</p></li>
+<li><p><cite>/profiles/&lt;username&gt;/</cite> – User profile detail page</p></li>
+</ul>
+<p>The Django Admin interface is available at:</p>
+<ul class="simple">
+<li><p><cite>/admin/</cite></p></li>
+</ul>
+<p>These interfaces are intended for web usage only; no public REST API is exposed.</p>
+</section>
+<section id="use-cases">
+<h2>Use Cases<a class="headerlink" href="#use-cases" title="Permalink to this heading">¶</a></h2>
+<section id="use-case-1-browse-lettings">
+<h3>Use Case 1: Browse lettings<a class="headerlink" href="#use-case-1-browse-lettings" title="Permalink to this heading">¶</a></h3>
+<p>A visitor can access the home page and browse available lettings.
+Clicking on a letting displays detailed address information.</p>
+</section>
+<section id="use-case-2-view-user-profiles">
+<h3>Use Case 2: View user profiles<a class="headerlink" href="#use-case-2-view-user-profiles" title="Permalink to this heading">¶</a></h3>
+<p>Users can view profiles showing usernames and favorite cities.</p>
+</section>
+<section id="use-case-3-administration">
+<h3>Use Case 3: Administration<a class="headerlink" href="#use-case-3-administration" title="Permalink to this heading">¶</a></h3>
+<p>Administrators can manage users, profiles, addresses, and lettings via the Django Admin interface.</p>
+</section>
+</section>
+<section id="deployment">
+<h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this heading">¶</a></h2>
+<p>To deploy this application, you will need the following:
+- Sentry account with a personal DSN
+- DockerHub account
+- Yandex Cloud account
+- Yandex Cloud CLI installed
+- GitHub account
+- Yandex Cloud Service Account</p>
+<p>1. Configure your Yandex Cloud Service Account
+Assign Cloud-level permissions to your account: <strong>editor</strong>, <strong>viewer</strong>
+Assign other permissions: <strong>container-registry.images.puller</strong>, <strong>lockbox.payloadViewer</strong>, <strong>kms.keys.encrypterDecrypter</strong></p>
+<ol class="arabic" start="2">
+<li><p>Create your Yandex Lockbox Secret
+During creation:
+1. Select User Secret Type
+2. Add keys-value pairs:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>key: SENTRY_DSN containing your SENTRY_DSN</p></li>
+<li><p>key: DJANGO_SECRET_KEY, containing your secret key</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Click “Create”</p></li>
+</ol>
+</li>
+<li><p>Create your Yandex Cloud Container Registry named <strong>orange-lettings</strong></p></li>
+<li><p>Create your Yandex Cloud Serverless Container
+Note: Your Service Account should have <strong>functions.admin</strong> permission in your Serverless Container.</p></li>
+</ol>
+<p>5. Generate Service Account Key
+Replace &lt;SA_ID&gt; with your Service Account’s ID.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>yc<span class="w"> </span>iam<span class="w"> </span>key<span class="w"> </span>create<span class="w"> </span>--service-account-id<span class="w"> </span>&lt;SA_ID&gt;<span class="w"> </span>--output<span class="w"> </span>sa-key.json
+</pre></div>
+</div>
+</div></blockquote>
+<p>ATTENTION: Be careful not to push the generated key to your GitHub Repository.</p>
+<ol class="arabic simple" start="6">
+<li><p>Add the following values to your GitHub Repository Actions Secrets:
+- CONTAINER_ID - ID of your Serverless Container
+- DOCKERHUB_TOKEN - Token generated for access to your DockerHub
+- DOCKERHUB_USERNAME - Your DockerHub username
+- LOCKBOX_SECRET_ID - ID of your LOCKBOX secret containing values from step 2.
+- SA_ID - ID of your Service Account
+- DJANGO_SECRET_KEY - Your Django Secret Key
+- YANDEX_CLOUD_ID - Your Yandex Cloud’s ID
+- YANDEX_CR - Your Yandex Cloud Container Registry address as follows: cr.yandex/YourContainerRegistryID
+- YANDEX_FOLDER_ID - ID of the Yandex Cloud Folder hosting your Services
+- YANDEX_SA_KEY - Full JSON generated in step 5</p></li>
+</ol>
+<p>7. Commit and push to your GitHub repository’s master branch to launch the CI/CD pipeline and deployment
+- CI will run tests and verify linting
+- CD will build images and push them to Yandex Cloud and DockerHub
+- Deploy Step will deploy serverless container revision and make the website accessible with link provided by Yandex Cloud Serverless Container.
+Make sure the revision is set as <strong>Public</strong> in your Yandex Cloud.</p>
+</section>
+<section id="application-management">
+<h2>Application Management<a class="headerlink" href="#application-management" title="Permalink to this heading">¶</a></h2>
+<section id="monitoring-and-error-tracking">
+<h3>Monitoring and Error Tracking<a class="headerlink" href="#monitoring-and-error-tracking" title="Permalink to this heading">¶</a></h3>
+<p>The application uses Sentry to monitor runtime errors and exceptions.</p>
+<p>Configuration is handled via the <cite>SENTRY_DSN</cite> environment variable.</p>
+</section>
+<section id="environment-variables">
+<h3>Environment Variables<a class="headerlink" href="#environment-variables" title="Permalink to this heading">¶</a></h3>
+<p>Sensitive configuration values are stored securely using Yandex Lockbox
+and injected at deployment time.</p>
+</section>
+<section id="updating-the-application">
+<h3>Updating the Application<a class="headerlink" href="#updating-the-application" title="Permalink to this heading">¶</a></h3>
+<p>Any push to the <cite>master</cite> branch triggers the CI/CD pipeline, which:</p>
+<ul class="simple">
+<li><p>Runs automated tests and verifies linting</p></li>
+<li><p>Builds Docker images</p></li>
+<li><p>Deploys a new serverless container revision</p></li>
+</ul>
+<p>Any push or pull request to any other branch only triggers the CI part of the pipeline, which:</p>
+<ul class="simple">
+<li><p>Runs automated tests</p></li>
+<li><p>Verifies linting</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Orange County Lettings</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2026, Dakimenko.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
